@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.yoki {
+  border: 2px solid red;
+}
