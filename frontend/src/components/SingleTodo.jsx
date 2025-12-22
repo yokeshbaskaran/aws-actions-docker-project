@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SingleTodo = ({ title }) => {
+const SingleTodo = ({ id, title, deleteTodo }) => {
   const [todoChecked, setTodoChecked] = useState(false);
 
   const tickBox = (e) => {
@@ -9,7 +9,7 @@ const SingleTodo = ({ title }) => {
 
   return (
     <>
-      <div className="flex items-center gap-5">
+      <div className="py-1 flex items-center gap-5">
         <input
           type="checkbox"
           className="size-5 cursor-pointer"
@@ -21,7 +21,10 @@ const SingleTodo = ({ title }) => {
           {title}
         </p>
 
-        <button className="p-1 px-2 rounded text-white bg-red-700 cursor-pointer">
+        <button
+          onClick={() => deleteTodo(id)}
+          className="p-1 px-2 rounded text-white bg-red-700 cursor-pointer"
+        >
           Delete
         </button>
       </div>
