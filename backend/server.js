@@ -3,8 +3,15 @@ require("dotenv").config({ quiet: true });
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const cors = require("cors");
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    credentials: true,
+  })
+);
 
 // // dummy data
 // const todos = [];
@@ -88,7 +95,7 @@ app.delete("/todos/:id", async (req, res) => {
   try {
     const id = req.params.id;
     await Todo.findByIdAndDelete(id);
-    res.status(200).json({ message: `Todo deleted` });
+    res.status(200).json({ message: `Todo deleted!!!` });
   } catch (error) {
     console.log("DELETE Todo failed!");
   }
