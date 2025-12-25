@@ -16,12 +16,13 @@ app.use(
 // // dummy data
 // const todos = [];
 mongoose
-  .connect(process.env.MONGO_DB_URL)
+  .connect("mongodb://mongo-db:27017/docker-mern")
+  // .connect(process.env.MONGO_DB_URL)
   .then(() => {
     console.log("MongoDB connected");
   })
   .catch((err) => {
-    console.log("DB connection failed!");
+    console.error("DB connection failed:", err.message);
   });
 
 // creating TODO schema
@@ -40,7 +41,8 @@ app.get("/todos", async (req, res) => {
     const todos = await Todo.find();
     res.status(200).json(todos);
   } catch (error) {
-    console.log("GET TODO failed!");
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch todos" });
   }
 });
 
@@ -102,7 +104,9 @@ app.delete("/todos/:id", async (req, res) => {
 });
 
 //server on port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5005;
+// console.log("my app is here");
+
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
 });

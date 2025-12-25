@@ -1,0 +1,19 @@
+Docker commands:
+---
+docker build -t backend-img .
+docker run --name backend-c -p 5000:5000 backend-img
+ 
+docker network create network-todo
+docker network ls 
+docker network rm <name> 
+
+with port and network:
+---
+
+docker run -d --name mongo-db --network todo-mern -p 27017:27017 mongo
+
+docker run --name backend --network todo-mern -p 5000:5000 backend-img
+
+-> always start MongoDB(database) first and then Backend(server)
+-> attach network to act work in single network
+-> also change "MONGO_DB" url using Docker container image (eg:- mongo-db) to make connection between Backend & MongoDB
