@@ -1,27 +1,25 @@
-version: '3'
+version: "3"
 services:
-    backend:
-        build:
-          context: ./backend
-        ports:
-          - "5000:5000"
-        networks:
-          - mern-network
-      
-    frontend:
-        build:
-          context: ./frontend
-        ports:
-          - "8000:80"          
-        # networks:
-        #   - mern-network
-    
-    mongo-db:
-        image: mongo:latest
-        ports:
-          - "27017:27017"
-        networks:
-          - mern-network
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000"
+    networks:
+      - mern-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8000:80"
+
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - mern-network
 
 networks:
   mern-network:
