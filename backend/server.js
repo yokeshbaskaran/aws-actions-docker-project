@@ -8,16 +8,13 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: "*",
     credentials: true,
   })
 );
 
-// // dummy data
-// const todos = [];
 mongoose
-  .connect("mongodb://mongo-db:27017/docker-mern")
-  // .connect(process.env.MONGO_DB_URL)
+  .connect(process.env.MONGO_DB_URL)
   .then(() => {
     console.log("MongoDB connected");
   })
